@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifier-home</title>
+</head>
+<style>
+    h2 {
+        margin: 0;
+        padding: 0;
+        color: rgb(236, 226, 226)
+    }
+
+    body {
+        background-color: pink;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }
+
+    h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .choices {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .verify-button {
+        text-decoration: none;
+        padding: 0.8rem 2rem;
+        border: none;
+        font-size: 1.1rem;
+        font-weight: bold;
+        background-color: black;
+        color: pink;
+        box-shadow: 0 4px 12px rgba(228, 101, 192, 0.2);
+        transition: background-color 0.3s ease, trasnform 0.2s ease;
+
+    }
+    .verify-button:hover{
+        background-color: rgba(30, 23, 27, 0.325);
+        transform:scale(1.05)
+    }
+</style>
+
+<body>
+    <h2>VERIFIER</h2>
+    <div class="box">
+        <h1>Welcome to Verifier🔍</h1>
+        <div class="container">
+            <h3>Choose what you want to verify:</h3>
+            <div class="choices">
+                <a href="{% url 'verify_link_frontend' %}" class="verify-button">🔗Verify Link</a>
+
+                <a href="{% url 'verify_image_frontend' %}" class="verify-button">🖼️Verify Image</a>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

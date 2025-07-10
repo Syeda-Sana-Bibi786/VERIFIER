@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖼️Verify image - Verifier</title>
+</head>
+<style>
+    .head {
+        margin: 0;
+        padding: 0;
+        color: rgb(236, 226, 226)
+    }
+    body {
+        background-color: pink;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .box{
+        margin-left: 40%;
+    }
+    .btn{
+        width:80px;
+        height:25px;
+        padding:2px;
+        border-radius: 25px;
+        color:pink;
+        background-color: black;
+        border-color:2px solid pink;
+        font-weight:bold;
+    }
+    .btn:hover{
+        background-color: rgba(21, 21, 21, 0.76);
+        transition-duration: 0.3s;
+    }
+    .back{
+        text-decoration:none;
+        color:black;
+
+    }
+    .back:hover{
+        color:grey;
+        transition:0.3s;
+    }
+</style>
+
+<body>
+    <h2 class="head">VERIFIER</h2>
+    <div class="box">
+        <h1>🖼️Image Verification</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="image"><b>Upload an image to verify:</b></label>
+            <br><br>
+            <input type="file" name="image" id="image">
+            <br><br>
+            <button type="submit" class="btn">Verify</button>
+        </form>
+        {% if result %}
+        {% if result.error %}
+        <p>Unable to verify image.Try again.</p>
+        {% else %}
+        <h3>📸Image Analysis:</h3>
+        <p><strong>Format:</strong>{{result.format}}</p>
+        <p><strong>Verdict:</strong>{{result.result}}</p>
+        {% if result.exif %}
+        <p><strong>EXIF METADATA:</strong></p>
+        <ul>
+            {% for key , value in result.exif.items %}
+            <li><strong>{{key}} : </strong>{{value}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+        <br>
+    </div>
+    <a href="{% url 'home' %}" class="back">&lt;&lt;Back to home</a>
+</body>
+
+</html>
